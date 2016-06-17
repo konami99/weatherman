@@ -25326,7 +25326,7 @@
 	        return React.createElement(
 	            'h2',
 	            null,
-	            'WeatherMessage Component'
+	            'it is 40 in Sydney'
 	        );
 	    }
 	});
