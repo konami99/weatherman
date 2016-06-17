@@ -25278,6 +25278,8 @@
 	        });
 	    },
 	    render: function render() {
+	        var location = this.state.location;
+	        var temp = this.state.temp;
 	        return React.createElement(
 	            'div',
 	            null,
@@ -25343,10 +25345,15 @@
 	    displayName: 'WeatherMessage',
 
 	    render: function render() {
+	        var location = this.props.location;
+	        var temp = this.props.temp;
 	        return React.createElement(
 	            'h2',
 	            null,
-	            'it is 40 in Sydney'
+	            'it is ',
+	            temp,
+	            ' in ',
+	            location
 	        );
 	    }
 	});
