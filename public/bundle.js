@@ -25267,19 +25267,36 @@
 
 	    getInitialState: function getInitialState() {
 	        return {
-	            location: 'Sydney',
-	            temp: 88
+	            isLoading: false
 	        };
 	    },
 	    handleSearch: function handleSearch(location) {
+	        var that = this;
+	        this.setState({ isLoading: true });
+
 	        this.setState({
 	            location: location,
-	            temp: 23
+	            temp: 23,
+	            isLoading: false
 	        });
 	    },
 	    render: function render() {
 	        var location = this.state.location;
 	        var temp = this.state.temp;
+	        var isLoading = this.state.isLoading;
+
+	        function renderMessage() {
+	            if (isLoading) {
+	                return React.createElement(
+	                    'h3',
+	                    null,
+	                    'Fetching weather...'
+	                );
+	            } else if (temp && location) {
+	                return React.createElement(WeatherMessage, { location: location, temp: temp });
+	            }
+	        }
+
 	        return React.createElement(
 	            'div',
 	            null,
@@ -25289,7 +25306,7 @@
 	                'Weather Component'
 	            ),
 	            React.createElement(WeatherForm, { onSearch: this.handleSearch }),
-	            React.createElement(WeatherMessage, { location: location, temp: temp })
+	            renderMessage()
 	        );
 	    }
 	});
