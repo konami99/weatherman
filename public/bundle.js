@@ -106,11 +106,11 @@
 
 	var Main = __webpack_require__(227);
 	var Weather = __webpack_require__(229);
-	var About = __webpack_require__(232);
-	var Example = __webpack_require__(237);
+	var About = __webpack_require__(233);
+	var Example = __webpack_require__(234);
 
 	// load foundation
-	__webpack_require__(233);
+	__webpack_require__(235);
 	$(document).foundation();
 
 	ReactDOM.render(React.createElement(
@@ -25376,6 +25376,7 @@
 	var React = __webpack_require__(8);
 	var WeatherForm = __webpack_require__(230);
 	var WeatherMessage = __webpack_require__(231);
+	var ErrorModal = __webpack_require__(232);
 
 	var Weather = React.createClass({
 	    displayName: 'Weather',
@@ -25387,18 +25388,23 @@
 	    },
 	    handleSearch: function handleSearch(location) {
 	        var that = this;
-	        this.setState({ isLoading: true });
+	        this.setState({
+	            isLoading: true,
+	            errorMessage: undefined
+	        });
 
 	        this.setState({
 	            location: location,
 	            temp: 23,
-	            isLoading: false
+	            isLoading: false,
+	            errorMessage: "error"
 	        });
 	    },
 	    render: function render() {
 	        var location = this.state.location;
 	        var temp = this.state.temp;
 	        var isLoading = this.state.isLoading;
+	        var errorMessage = this.state.errorMessage;
 
 	        function renderMessage() {
 	            if (isLoading) {
@@ -25411,7 +25417,11 @@
 	                return React.createElement(WeatherMessage, { location: location, temp: temp });
 	            }
 	        }
-
+	        function renderError() {
+	            if (typeof errorMessage === 'string') {
+	                return React.createElement(ErrorModal, null);
+	            }
+	        }
 	        return React.createElement(
 	            'div',
 	            null,
@@ -25421,7 +25431,8 @@
 	                'Weather Component'
 	            ),
 	            React.createElement(WeatherForm, { onSearch: this.handleSearch }),
-	            renderMessage()
+	            renderMessage(),
+	            renderError()
 	        );
 	    }
 	});
@@ -25495,6 +25506,50 @@
 /* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+
+	var React = __webpack_require__(8);
+	var ErrorModal = React.createClass({
+	    displayName: 'ErrorModal',
+
+	    componentDidMount: function componentDidMount() {
+	        var modal = new Foundation.Reveal($('#error-modal'));
+	        modal.open();
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { id: 'error-modal', className: 'reveal tiny text-center', 'data-reveal': '' },
+	            React.createElement(
+	                'h4',
+	                null,
+	                'Some Title'
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                'error message'
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                React.createElement(
+	                    'button',
+	                    { className: 'button hollow', 'data-close': '' },
+	                    'okay'
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = ErrorModal;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	var React = __webpack_require__(8);
@@ -25513,16 +25568,73 @@
 	module.exports = About;
 
 /***/ },
-/* 233 */
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(8);
+
+	var _require = __webpack_require__(166);
+
+	var Link = _require.Link;
+
+
+	var Example = React.createClass({
+	    displayName: 'Example',
+
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	                'h1',
+	                { className: 'text-center' },
+	                'Examples'
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed lorem vel odio ornare suscipit. Pellentesque mi nulla, rhoncus ac mauris sit amet, tempor sagittis mi. Proin id eleifend nisi, sit amet pretium ex. Donec ac velit eu elit bibendum congue in id mauris. Ut pulvinar lacinia sollicitudin. Cras mattis dui vitae purus tincidunt maximus. Curabitur bibendum vitae sem vitae viverra. Nulla dictum sapien nibh, ut euismod mauris dictum ac. Duis quis ligula sit amet mauris eleifend convallis quis sed turpis. Cras imperdiet felis non velit condimentum, scelerisque facilisis nunc condimentum. Donec varius odio eget ex dignissim varius.'
+	            ),
+	            React.createElement(
+	                'ol',
+	                null,
+	                React.createElement(
+	                    'li',
+	                    null,
+	                    React.createElement(
+	                        Link,
+	                        { to: '/?location=Sydney' },
+	                        'Sydney'
+	                    )
+	                ),
+	                React.createElement(
+	                    'li',
+	                    null,
+	                    React.createElement(
+	                        Link,
+	                        { to: '/?location=Melbourne' },
+	                        'Melbourne'
+	                    )
+	                )
+	            )
+	        );
+	    }
+	});
+	module.exports = Example;
+
+/***/ },
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(234);
+	var content = __webpack_require__(236);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(236)(content, {});
+	var update = __webpack_require__(238)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -25539,10 +25651,10 @@
 	}
 
 /***/ },
-/* 234 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(235)();
+	exports = module.exports = __webpack_require__(237)();
 	// imports
 
 
@@ -25553,7 +25665,7 @@
 
 
 /***/ },
-/* 235 */
+/* 237 */
 /***/ function(module, exports) {
 
 	/*
@@ -25609,7 +25721,7 @@
 
 
 /***/ },
-/* 236 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -25861,63 +25973,6 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
-
-/***/ },
-/* 237 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(8);
-
-	var _require = __webpack_require__(166);
-
-	var Link = _require.Link;
-
-
-	var Example = React.createClass({
-	    displayName: 'Example',
-
-	    render: function render() {
-	        return React.createElement(
-	            'div',
-	            null,
-	            React.createElement(
-	                'h1',
-	                { className: 'text-center' },
-	                'Examples'
-	            ),
-	            React.createElement(
-	                'p',
-	                null,
-	                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed lorem vel odio ornare suscipit. Pellentesque mi nulla, rhoncus ac mauris sit amet, tempor sagittis mi. Proin id eleifend nisi, sit amet pretium ex. Donec ac velit eu elit bibendum congue in id mauris. Ut pulvinar lacinia sollicitudin. Cras mattis dui vitae purus tincidunt maximus. Curabitur bibendum vitae sem vitae viverra. Nulla dictum sapien nibh, ut euismod mauris dictum ac. Duis quis ligula sit amet mauris eleifend convallis quis sed turpis. Cras imperdiet felis non velit condimentum, scelerisque facilisis nunc condimentum. Donec varius odio eget ex dignissim varius.'
-	            ),
-	            React.createElement(
-	                'ol',
-	                null,
-	                React.createElement(
-	                    'li',
-	                    null,
-	                    React.createElement(
-	                        Link,
-	                        { to: '/?location=Sydney' },
-	                        'Sydney'
-	                    )
-	                ),
-	                React.createElement(
-	                    'li',
-	                    null,
-	                    React.createElement(
-	                        Link,
-	                        { to: '/?location=Melbourne' },
-	                        'Melbourne'
-	                    )
-	                )
-	            )
-	        );
-	    }
-	});
-	module.exports = Example;
 
 /***/ }
 /******/ ]);
