@@ -4,6 +4,7 @@ var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 var Main = require('Main');
 var Weather = require('Weather');
 var About = require('About');
+var Example = require('Example');
 
 // load foundation
 require('style!css!foundation-sites/dist/foundation.min.css')
@@ -14,6 +15,7 @@ ReactDOM.render(
     <Route path="/" component={Main}>
       <IndexRoute component={Weather}/>
       <Route path="about" component={About}/>
+      <Route path="examples" component={Example}/>
     </Route>
   </Router>,
   document.getElementById('app')

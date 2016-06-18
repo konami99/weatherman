@@ -107,6 +107,7 @@
 	var Main = __webpack_require__(227);
 	var Weather = __webpack_require__(229);
 	var About = __webpack_require__(232);
+	var Example = __webpack_require__(237);
 
 	// load foundation
 	__webpack_require__(233);
@@ -119,7 +120,8 @@
 	    Route,
 	    { path: '/', component: Main },
 	    React.createElement(IndexRoute, { component: Weather }),
-	    React.createElement(Route, { path: 'about', component: About })
+	    React.createElement(Route, { path: 'about', component: About }),
+	    React.createElement(Route, { path: 'examples', component: Example })
 	  )
 	), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
@@ -25323,6 +25325,15 @@
 	                            { to: '/about', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
 	                            'About'
 	                        )
+	                    ),
+	                    React.createElement(
+	                        'li',
+	                        null,
+	                        React.createElement(
+	                            Link,
+	                            { to: '/examples', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
+	                            'Examples'
+	                        )
 	                    )
 	                )
 	            ),
@@ -25847,6 +25858,27 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(8);
+
+	var Example = React.createClass({
+	    displayName: 'Example',
+
+	    render: function render() {
+	        return React.createElement(
+	            'h2',
+	            null,
+	            'Examples Component'
+	        );
+	    }
+	});
+	module.exports = Example;
 
 /***/ }
 /******/ ]);
