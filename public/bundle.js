@@ -25262,11 +25262,14 @@
 	            null,
 	            React.createElement(Nav, null),
 	            React.createElement(
-	                'h2',
-	                null,
-	                'Main Component'
-	            ),
-	            this.props.children
+	                'div',
+	                { className: 'row' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'columns medium-6 large-4 small-centered' },
+	                    this.props.children
+	                )
+	            )
 	        );
 	    }
 	});
@@ -25867,14 +25870,50 @@
 
 	var React = __webpack_require__(8);
 
+	var _require = __webpack_require__(166);
+
+	var Link = _require.Link;
+
+
 	var Example = React.createClass({
 	    displayName: 'Example',
 
 	    render: function render() {
 	        return React.createElement(
-	            'h2',
+	            'div',
 	            null,
-	            'Examples Component'
+	            React.createElement(
+	                'h1',
+	                { className: 'text-center' },
+	                'Examples'
+	            ),
+	            React.createElement(
+	                'p',
+	                null,
+	                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed lorem vel odio ornare suscipit. Pellentesque mi nulla, rhoncus ac mauris sit amet, tempor sagittis mi. Proin id eleifend nisi, sit amet pretium ex. Donec ac velit eu elit bibendum congue in id mauris. Ut pulvinar lacinia sollicitudin. Cras mattis dui vitae purus tincidunt maximus. Curabitur bibendum vitae sem vitae viverra. Nulla dictum sapien nibh, ut euismod mauris dictum ac. Duis quis ligula sit amet mauris eleifend convallis quis sed turpis. Cras imperdiet felis non velit condimentum, scelerisque facilisis nunc condimentum. Donec varius odio eget ex dignissim varius.'
+	            ),
+	            React.createElement(
+	                'ol',
+	                null,
+	                React.createElement(
+	                    'li',
+	                    null,
+	                    React.createElement(
+	                        Link,
+	                        { to: '/?location=Sydney' },
+	                        'Sydney'
+	                    )
+	                ),
+	                React.createElement(
+	                    'li',
+	                    null,
+	                    React.createElement(
+	                        Link,
+	                        { to: '/?location=Melbourne' },
+	                        'Melbourne'
+	                    )
+	                )
+	            )
 	        );
 	    }
 	});
