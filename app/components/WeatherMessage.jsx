@@ -3,10 +3,10 @@ var React = require('react');
 
 
 
-var WeatherMessage = (props) => {
-    var {temp, location} = props;
+var WeatherMessage = ({temp, location}) => {
+    
     return (
-        <h2>it is {temp} in {location} !?</h2>
+        <h2>it is {temp} in {location} haha!</h2>
     )
 };
 
