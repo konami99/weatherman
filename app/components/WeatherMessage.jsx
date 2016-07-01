@@ -4,8 +4,7 @@ var React = require('react');
 
 
 var WeatherMessage = (props) => {
-    var location = props.location;
-    var temp = props.temp;
+    var {temp, location} = props;
     return (
         <h2>it is {temp} in {location} !?</h2>
     )
