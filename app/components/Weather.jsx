@@ -13,7 +13,9 @@ var Weather = React.createClass({
         var that = this;
         this.setState({
             isLoading: true,
-            errorMessage: undefined
+            errorMessage: undefined,
+            location: undefined,
+            temp: undefined
         });
 
         this.setState({
@@ -22,6 +24,22 @@ var Weather = React.createClass({
             isLoading: false,
             errorMessage: "error"
         })
+    },
+    componentDidMount: function(){
+        var location = this.props.location.query.location;
+        if(location && location.length > 0){
+            console.log('here');
+            this.handleSearch(location);
+            window.location.hash = '#/';
+        }
+    },
+    componentWillReceiveProps: function(newProps){
+        var location = newProps.location.query.location;
+        if(location && location.length > 0){
+            console.log('here');
+            this.handleSearch(location);
+            window.location.hash = '#/';
+        }
     },
     render: function(){
         var location = this.state.location;
